@@ -1,0 +1,109 @@
+body{
+	 	 	min-height: 100vh;
+      overflow-x: hidden;
+	 	   }
+.page-content{
+              margin-left: 17rem;
+              margin-right: 1rem;
+              transition: all 0.4s;
+       	 	    }
+.content.active{
+              margin-left: 1rem;
+              margin-right: 1rem;
+       	 	     }
+
+.sb-topnav{
+        width: calc(100% - 16rem);
+        margin-left: 16rem;
+        transition: all 0.4s;
+      }
+
+#content.active {
+                width: 100%;
+                margin-left:0;
+               }
+ button i{
+          font-size: 30px;
+        	}
+.navbar-brand {
+          	 		font-size: 30px;
+          	 	}
+button i:hover {
+                color: cyan  !important;
+                }
+@media (max-width: 768px){
+            .navbar-brand {
+                	 	     	font-size: 20px;
+                	       	}
+             .navbar-bar img{
+                            height: 35px;
+                            width: 35px;
+                	 	       }
+            #content {
+                      width: 100%;
+                      margin-left: 0rem;
+                      }
+            #content.active {
+                            margin-left: 16rem;
+                            width: calc(100% - 16rem);
+                           }
+            button i{
+                      font-size: 20px;
+                	 	}
+
+              }
+
+.vertical-nav {
+              min-width: 16rem;
+              width: 16rem;
+              height: 100vh;
+              position: fixed;
+              top: 0;
+              left: 0;
+              background: #424949;
+              box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+              transition: all 0.4s;
+              color: #fff ;
+              text-decoration: none ;
+              }
+.text-gray {
+            color: #fff;
+            padding: 5px;
+            font-size: 25px;
+            padding-left: 10px;
+            }
+ul li{
+     line-height: 40px;
+     border-bottom: 1px solid rgba(255,255,255,0.1);
+     padding-left: 15px;
+     text-decoration: none;
+      }
+ul li a{
+        color: #fff !important;
+        text-decoration: none;
+        }
+.nav-item{
+          background-color: #424949;
+          }
+#sidebar.active {
+                margin-left: -16rem;
+                }
+ul li a:hover {
+              color: cyan  !important;
+              padding-left: 25px;
+              }
+@media (max-width: 768px) {
+       #sidebar {
+          margin-left: -16rem;
+                }
+       #sidebar.active {
+          margin-left: 0;
+          }
+      }
+ul ul {
+	position: static;
+	display: none;
+}
+.sub-menu.show{
+  display: block;
+}

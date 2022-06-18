@@ -1,0 +1,11 @@
+.list1 li{
+  padding-bottom: 2rem;
+  font-size: x-large;
+}
+.indicator{
+    font-size: 10pt;
+}
+li a{
+    text-decoration: none;
+    color: rgb(253, 253, 253);
+}

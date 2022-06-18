@@ -1,0 +1,35 @@
+#about li a{ 
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+#contect li a{
+  color: white;
+  text-decoration: none;
+}
+#contect li{
+  display: inline;
+ 
+  margin-left:1rem;
+}
+
+i{
+  font-size:25px;
+}
+#address a{
+  padding-left: 1rem;
+  text-decoration: none;
+  color: white;
+}
+.foot{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ 
+  margin-top: auto;
+}
+
+

@@ -1,0 +1,17 @@
+#demo{
+    height: 25rem;
+    width: 30rem;
+}
+.bg{
+    background-color: antiquewhite;
+    padding: 0.5rem;
+}
+#rate span{
+    color: rgb(5, 144, 5);
+  }
+  #rate i{
+    font-size: 1.2rem;
+    padding-right: 3px;
+    color: rgb(39, 39, 252);
+  }
+  

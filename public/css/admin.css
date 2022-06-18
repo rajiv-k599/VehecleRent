@@ -1,0 +1,27 @@
+
+ .num{
+    font-size: 3rem;
+    color: aliceblue;
+  text-align: center;
+  line-height: 0.5;
+
+}
+.c1 .card-header{
+    background-color: rgb(79, 79, 253);
+   
+}
+
+.c2 .card-header{
+    background-color: rgb(91, 176, 191);
+}
+.c3 .card-header{
+    background-color: rgb(166, 208, 68);
+}
+.c4 .card-header{
+    background-color: rgb(190, 74, 187);
+}
+.title{
+    font-size: 1rem;
+    color: aliceblue;
+    text-align: center;
+}
