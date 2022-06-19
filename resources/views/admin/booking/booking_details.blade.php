@@ -74,7 +74,7 @@
             </tr>
             <tr>
                <td colspan="4" style="text-align:center"> 
-                <a name="" id="" class="btn btn-primary" href="{{route('confirm',['id'=>$book->Bid,'user'=>$book->Uid])}}" role="button" >Confirm Booking</a>
+                <a name="" id="" class="btn btn-primary" href="{{route('confirm',['id'=>$book->Bid,'user'=>$book->Uid,'vid'=>$book->vehicleId])}}" role="button" >Confirm Booking</a>
                <a name="" id="" class="btn btn-danger" href="{{route('cancel',['id'=>$book->Bid,'user'=>$book->Uid])}}" role="button" onclick="return confirm('Do you really want to Cencel this booking')">Cancel Booking</a></td>
             </tr>
            

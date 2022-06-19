@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Request;
+
 use Illuminate\Support\Facades\Notification;
 use App\Models\Vehicle;
 use App\Models\Brand;
@@ -28,10 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {   
+        $most_booked=Vehicle::join('brands','vehicles.Brand','=','brands.id')->join('ranks','vehicles.Vid','=','ranks.Vehicle_id')->select('vehicles.*','brands.*')->orderBy('ranks.rank','DESC')->limit(10)->get();
         $two=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',2)->select('vehicles.*','brands.*')->paginate(4);
         $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(4);
        // return $result;
-       return view('userHome',compact('two','four'));
+      // return response()->json($most_booked);
+       return view('userHome',compact('two','four','most_booked'));
     }
     public function vehicle_details($id=null){
         $result=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('Vid',$id)->first();
@@ -52,6 +56,14 @@ class HomeController extends Controller
        // return $result;
        return view('four_wheeler',compact('four'));
     }
+    public function mostbooked()
+    {   
+        $most_booked=Vehicle::leftJoin('brands','Brand','=','brands.id')->leftJoin('ranks','ranks.Vehicle_id','=','vehicles.Vid')->select('vehicles.*','brands.*')->orderBy('ranks.rank', 'DESC')->limit(10);
+       // $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(4);
+       // return $result;
+      // return view('four_wheeler',compact('four'));
+    }
+
     public function mark(){
         $user=User::find(Auth::User()->id);
         Auth::User()->unreadNotifications->markAsRead();
@@ -69,7 +81,7 @@ class HomeController extends Controller
             ->select('vehicles.*','brands.*')->get();
             return view('search_result',compact('result'));
         }else{
-            echo 'empty';
+           return redirect(route('home'));
         }
        
       
@@ -94,8 +106,8 @@ class HomeController extends Controller
         //         'list_data'=>$li,
         //      );
         //      echo js_encode($data);
-        // }else{
-        //     echo 'empty';
+        //  }else{
+        //      echo 'empty';
          }
     }
 

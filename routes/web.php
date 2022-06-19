@@ -92,7 +92,7 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::get('/show/{id}', [BookingController::class, 'show'])->name('view');
     Route::get('/details/{id}', [BookingController::class, 'details'])->name('details');
-    Route::get('/confirm/{id}/{user}', [BookingController::class, 'confirm'])->name('confirm');
+    Route::get('/confirm/{id}/{user}/{vid}', [BookingController::class, 'confirm'])->name('confirm');
     Route::get('/cancel/{id}/{user}', [BookingController::class, 'cancel'])->name('cancel');
 
     //reg-user

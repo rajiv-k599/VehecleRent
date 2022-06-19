@@ -5,6 +5,7 @@ use App\Models\Vehicle;
 use App\Models\Brand;
 use App\Models\Booking;
 use App\Models\User;
+use App\Models\Rank;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\StatusNotification;
@@ -39,6 +40,7 @@ class BookingController extends Controller
                         ->where('status',1)
                         ->select('bookings.*', 'vehicles.Vname', 'users.name')->get();
                         
+                        
         //return $booked;
         return view('admin.booking.confirmedBooking',compact('booked'));
        
@@ -49,7 +51,7 @@ class BookingController extends Controller
                         ->leftJoin('vehicles','bookings.vehicleId','=','vehicles.Vid')
                         ->where('status',2)
                         ->select('bookings.*', 'vehicles.Vname', 'users.name')->get();
-                        
+                    
        // return $pending;
         return view('admin.booking.canceledBooking',compact('canceled'));
        
@@ -64,7 +66,7 @@ class BookingController extends Controller
     {
         $report=DB::table('bookings')->leftJoin('users','bookings.Uid','=','users.id')
         ->leftJoin('vehicles','bookings.vehicleId','=','vehicles.Vid')
-        ->select('bookings.*', 'vehicles.Vname','vehicles.img1','vehicles.Rate', 'users.name')->paginate(5);
+        ->select('bookings.*', 'vehicles.Vname','vehicles.img1','vehicles.Rate', 'users.name')->orderBy('bookings.Bid', 'DESC')->paginate(5);
         return view('user.booking.vehicle_report',compact('report'));
     }
 
@@ -133,7 +135,7 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function confirm($id,$user)
+    public function confirm($id,$user,$vid)
     {
         $status=1;
         $person=User::find($user);
@@ -141,6 +143,15 @@ class BookingController extends Controller
        // return $confirm;
        $confirm->status=$status;
        $confirm->save();
+       $check=Rank::where('Vehicle_id',$vid)->exists();               
+         if($check){
+            Rank::where('Vehicle_id',$vid)->increment('rank',1);
+         }else{
+           $count=new Rank();
+           $count->Vehicle_id=$vid;
+           $count->rank=1;
+           $count->save();
+         }    
        $approve='Your Request Have been Approved';
        //$arr = ['name'=> '$person->name', 'status'=>'Your Request Have been Approved'];
       $person->notify(new StatusNotification($person->name,$approve));
