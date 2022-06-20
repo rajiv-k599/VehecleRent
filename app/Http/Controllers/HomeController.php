@@ -44,21 +44,23 @@ class HomeController extends Controller
     }
     public function two()
     {   
+        $most_booked=Vehicle::join('brands','vehicles.Brand','=','brands.id')->join('ranks','vehicles.Vid','=','ranks.Vehicle_id')->where('vehicles.Vtype',2)->select('vehicles.*','brands.*')->orderBy('ranks.rank','DESC')->limit(10)->get();
         $two=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',2)->select('vehicles.*','brands.*')->paginate(12);
        // $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(4);
        // return $result;
-       return view('two_wheeler',compact('two'));
+       return view('two_wheeler',compact('two','most_booked'));
     }
     public function four()
     {   
+        $most_booked=Vehicle::join('brands','vehicles.Brand','=','brands.id')->join('ranks','vehicles.Vid','=','ranks.Vehicle_id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->orderBy('ranks.rank','DESC')->limit(10)->get();
         $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(12);
        // $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(4);
        // return $result;
-       return view('four_wheeler',compact('four'));
+       return view('four_wheeler',compact('four','most_booked'));
     }
     public function mostbooked()
     {   
-        $most_booked=Vehicle::leftJoin('brands','Brand','=','brands.id')->leftJoin('ranks','ranks.Vehicle_id','=','vehicles.Vid')->select('vehicles.*','brands.*')->orderBy('ranks.rank', 'DESC')->limit(10);
+      //  $most_booked=Vehicle::leftJoin('brands','Brand','=','brands.id')->leftJoin('ranks','ranks.Vehicle_id','=','vehicles.Vid')->select('vehicles.*','brands.*')->orderBy('ranks.rank', 'DESC')->limit(10);
        // $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(4);
        // return $result;
       // return view('four_wheeler',compact('four'));

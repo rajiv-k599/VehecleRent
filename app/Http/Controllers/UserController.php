@@ -16,10 +16,11 @@ class UserController extends Controller
      */
     public function index()
     {
+        $most_booked=Vehicle::join('brands','vehicles.Brand','=','brands.id')->join('ranks','vehicles.Vid','=','ranks.Vehicle_id')->select('vehicles.*','brands.*')->orderBy('ranks.rank','DESC')->limit(10)->get();
         $two=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',2)->select('vehicles.*','brands.*')->paginate(4);
         $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(4);
        // return $result;
-       return view('userHome',compact('two','four'));
+       return view('userHome',compact('two','four','most_booked'));
     }
 
     /**

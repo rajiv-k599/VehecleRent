@@ -24,4 +24,7 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
+    public function profile(){
+        return view('admin.admin_profile.profile');
+    }
 }

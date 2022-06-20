@@ -13,7 +13,7 @@ use App\Models\Booking;
 class DashboardController extends Controller
 {
     public function dashboard(){
-        $reg_user=Vehicle::all()->count();
+        $reg_user=User::all()->count();
         $reg_brand=Brand::all()->count();
         $reg_vehicle=Vehicle::all()->count();
         $booking=Booking::all()->count();
@@ -26,6 +26,7 @@ class DashboardController extends Controller
        // return $new;
        return view('admin.adminDashboard',compact('reg_user','reg_brand','reg_vehicle','booking','new','new1','confirmed','confirmed2','cancelled','cancelled2'));
     }
+    
     
     
 }

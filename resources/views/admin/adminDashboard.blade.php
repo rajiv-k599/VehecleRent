@@ -12,7 +12,7 @@
               <p class="title">Reg User</p>
             </div>
             <div class="card-footer">
-              <a href="{{route('register')}}" style="text-decoration: none; color:black;" >Full Details<i class="fa-solid fa-arrow-right ps-1"></i></a>
+              <a href="{{route('registerUser')}}" style="text-decoration: none; color:black;" >Full Details<i class="fa-solid fa-arrow-right ps-1"></i></a>
             
             </div>
           </div>

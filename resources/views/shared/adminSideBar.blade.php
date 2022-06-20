@@ -33,7 +33,7 @@
    </li>
 
     <li class="nav-item">
-     <a href="#" class="nav-link">Profile </a>
+     <a href="{{route('admin_profile')}}" class="nav-link">Profile </a>
    </li>
     <li class="nav-item">
       @if(Auth::guard('admin')->check())

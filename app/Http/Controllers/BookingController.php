@@ -21,7 +21,10 @@ class BookingController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+   
+
     public function index()
     {  
         $pending=DB::table('bookings')->leftJoin('users','bookings.Uid','=','users.id')
@@ -65,7 +68,7 @@ class BookingController extends Controller
     public function report()
     {
         $report=DB::table('bookings')->leftJoin('users','bookings.Uid','=','users.id')
-        ->leftJoin('vehicles','bookings.vehicleId','=','vehicles.Vid')
+        ->leftJoin('vehicles','bookings.vehicleId','=','vehicles.Vid')->where('bookings.Uid',Auth::User()->id)
         ->select('bookings.*', 'vehicles.Vname','vehicles.img1','vehicles.Rate', 'users.name')->orderBy('bookings.Bid', 'DESC')->paginate(5);
         return view('user.booking.vehicle_report',compact('report'));
     }

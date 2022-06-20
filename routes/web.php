@@ -97,6 +97,8 @@ Route::group(['prefix' => 'admin'], function() {
 
     //reg-user
     Route::get('/reg_user',[UserController::class,'view'])->name('registerUser');
+    //profile
+    Route::get('/profile',[AdminController::class,'profile'])->name('admin_profile');
 
 
 	});
