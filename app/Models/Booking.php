@@ -14,7 +14,6 @@ class Booking extends Model
 
     protected $fillable = [
         'Bid',
-        
         'FromDate',
         'ToDate',
         'message',

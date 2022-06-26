@@ -99,6 +99,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/reg_user',[UserController::class,'view'])->name('registerUser');
     //profile
     Route::get('/profile',[AdminController::class,'profile'])->name('admin_profile');
+    Route::post('/edit',[AdminController::class,'edit'])->name('admin_edit');
+    Route::post('/password',[AdminController::class,'password'])->name('admin_password');
 
 
 	});

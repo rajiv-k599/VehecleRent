@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->integer('Vtype');
             $table->string("Bname");
-            $table->unsignedBigInteger('Aid');
-            $table->foreign('Aid')->references('id')->on('admins');
+           
             $table->timestamps();
         });
     }

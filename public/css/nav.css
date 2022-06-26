@@ -89,9 +89,13 @@ ul li a{
                 margin-left: -16rem;
                 }
 ul li a:hover {
+              background-color: rgb(46, 45, 45);
               color: cyan  !important;
               padding-left: 25px;
               }
+ .d a:hover{
+  background-color: rgb(53, 52, 52);
+ }             
 @media (max-width: 768px) {
        #sidebar {
           margin-left: -16rem;

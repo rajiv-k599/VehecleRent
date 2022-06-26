@@ -56,10 +56,10 @@
 
                             <div class="col-md-6">
                                 <input id="number" type="Number" class="form-control @error('number') is-invalid @enderror" name="number" value="{{ old('number') }}" required autocomplete="number">
-
+                                <div class="pt-2" id='Error'></div>
                                 @error('number')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong id='Error'>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -100,4 +100,24 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+    $('#number').keyup(function(){
+        var phone = $('#number').val();
+        console.log(phone);
+    
+        if(phone.length===10){
+          $('#Error').html('**Valid**');
+          $('#Error').css('color','Green');
+          return true;
+        } else {
+           $('#Error').html('**Must have 10 number**');
+          $('#Error').css('color','red');
+          return false;
+        }
+    
+
+    });
+  });
+</script>
 @endsection

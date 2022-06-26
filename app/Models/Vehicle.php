@@ -16,6 +16,7 @@ class Vehicle extends Model
         'Vid',
         'Vtype',
         'Brand',
+        'Vname',
         'Model',
         'Vno',
         'Fuel',

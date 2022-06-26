@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('status');
             $table->integer('bookingNumber');
             $table->unsignedBigInteger('vehicleId');
-            $table->foreign('vehicleId')->references('Vid')->on('vehicles');
+            $table->foreign('vehicleId')->references('Vid')->on('vehicles')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('Uid');
             $table->foreign('Uid')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

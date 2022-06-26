@@ -6,7 +6,7 @@
    </li>
    <li class="nav-item">
      <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">Brand</a>
-     <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #424949;">
+     <div class="dropdown-menu d" aria-labelledby="navbarDropdown" style="background-color: #424949;">
           <a class="dropdown-item" href="{{ route('admin.brand') }}" >Add Brand</a>
           <a class="dropdown-item" href="{{ route('admin.brandmanager') }}">Manage Brand</a>
         </div>
@@ -15,13 +15,13 @@
      <a class="nav-link dropdown-toggle" id="navbarDropdown2" data-toggle="dropdown">Vehicle
 
      </a>
-     <div class="dropdown-menu" aria-labelledby="navbarDropdown2" style="background-color: #424949;">
+     <div class="dropdown-menu d" aria-labelledby="navbarDropdown2" style="background-color: #424949;">
           <a class="dropdown-item" href="{{ route('vehicle') }}">Post Vehicle</a>
           <a class="dropdown-item" href="{{ route('vehiclemanager') }} ">Manage Vehicle</a>
         </div>
    <li class="nav-item">
      <a class="nav-link dropdown-toggle" id="navbarDropdown3" data-toggle="dropdown">Manage Booking</a>
-     <div class="dropdown-menu" aria-labelledby="navbarDropdown3" style="background-color: #424949;">
+     <div class="dropdown-menu d" aria-labelledby="navbarDropdown3" style="background-color: #424949;">
       <a class="dropdown-item" href="{{route('new')}}">New</a>
       <a class="dropdown-item" href="{{route('booked')}}">Confirmed</a>
       <a class="dropdown-item" href="{{route('canceled')}}">Canceled</a>
