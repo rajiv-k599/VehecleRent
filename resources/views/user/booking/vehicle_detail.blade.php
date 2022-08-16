@@ -1,7 +1,7 @@
 @extends('shared.layout')
 @section('dashboard')
 <link href="{{ asset('css/vehicleDetails.css') }}" rel="stylesheet">
-<div class="ms-3 pt-2"><h3 class="text-uppercase">My profile</h3></div>
+<div class="ms-3 pt-2"><h3 class="text-uppercase">Details</h3></div>
 <section class="container-fluid border p-5">
     <div class="row ">
         <div class="col-8 border ps-5 ">
@@ -120,6 +120,33 @@
 
         </div>
     </div>
+</section>
+<section>
+  <div class="border-bottom border-top" style="background-color:black" >
+    <h4 class="text-uppercase ps-2" style="color: aliceblue">Recommended Vehicle</h4>
+  </div>
+  <div class="row p-5">
+    <?php $i=0; ?>
+    @foreach ($products as $p)
+    <?php
+        if($i >= 4) {break;}else{
+            if($p['Vtype']===$result->Vtype){ ?>
+              <div class="card me-4" style="width: 18rem;">
+                <img class="card-img-top" src="/vehicles/{{ $p['img1'] }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ $p['Vname'] }}</h5>
+                
+                  <a href="{{route('vehicle_details',$p['Vid'])}}" class="btn btn-primary">Details</a><br>
+                  {{ $p['similarity'] }}
+                </div>
+              </div>
+              
+      <?php }
+             }
+        $i++;  ?>
+    @endforeach
+    
+  </div>
 </section>
 
 
