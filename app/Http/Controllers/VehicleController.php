@@ -34,20 +34,20 @@ class VehicleController extends Controller
       //       'img3'=>'required|image',
       //  ]);
           //Image 1
-          $data=new Vehicle();
-          $data->Vtype=$request->Vtype;
-          $data->Brand=$request->Brand;
-          $data->Vname=$request->Vname;
-          $data->Model=$request->Model;
-          $data->Vno=$request->Vno;
-          $data->Fuel=$request->Fuel;
-          $data->Capacity=$request->Capacity;
-          $data->Rate=$request->Rate;
-          $data->Overview=$request->Overview;
+          $data = new Vehicle();
+          $data->Vtype = $request->Vtype;
+          $data->Brand = $request->Brand;
+          $data->Vname = $request->Vname;
+          $data->Model = $request->Model;
+          $data->Vno = $request->Vno;
+          $data->Fuel = $request->Fuel;
+          $data->Capacity = $request->Capacity;
+          $data->Rate = $request->Rate;
+          $data->Overview = $request->Overview;
             //image upload
             if($request->hasfile('img1')){
-              $img1=$request->img1;
-              $imagename1=$img1->getClientOriginalName();
+              $img1= $request->img1;
+              $imagename1 = $img1->getClientOriginalName();
               $request->img1->move(public_path('vehicles'),$imagename1);
               $data->img1= $imagename1;
             }

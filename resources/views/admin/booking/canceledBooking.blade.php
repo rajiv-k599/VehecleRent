@@ -9,7 +9,7 @@
       @endif
            <div class="card">
              <div class="card-header d-flex align-items-center">
-               <h4>New Booking</h4>
+               <h4>Cencelled Booking</h4>
              </div>
              <div class="card-body">
                <div class="table-responsive">

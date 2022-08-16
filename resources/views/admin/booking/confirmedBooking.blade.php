@@ -8,8 +8,10 @@
         </div>
       @endif
            <div class="card" id="data">
-             <div class="card-header d-flex align-items-center">
-               <h4>New Booking</h4>
+             <div class="card-header d-flex align-items-center ">
+               <h4>Comfirmed Booking</h4>
+              
+              
              </div>
              <div class="card-body">
                <div class="table-responsive">
@@ -53,6 +55,40 @@
              </div>
            </div>
 </div>
+<script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script>
+<script>
+   $(document).ready(function(){
+    $("#search").keyup(function(){
+      var val=$("#search").val();
+      console.log(val);
+     // $('#list').html('');
+
+      $.ajaxSetup({
+          headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+                 });
+
+         $.ajax({
+             type:'POST',
+             url:'{{route('autosearch')}}',
+             data:{type:val,'_token': '{{csrf_token()}}'},
+             success:function(data){
+             
+             // if(data.length>0){
+            //   for(i=0;i<data.length;i++){
+            //   $('#list').append('<a href="/user/vehicle_details/'+data[i]['Vid']+'"><li class="list-group-item"><img src="/vehicles/'+data[i]['img1']+'" style="width:40px;" ><strong class="ps-1">'+data[i]['Vname']+'</strong></li></a>');
+            //   //$('#list').html(data);
+            // }
+            }         
+               // $('#list').html($li); 
+         // }
+       });
+
+    });
+
+  });
+</script>
 
 @endsection
 

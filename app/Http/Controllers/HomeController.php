@@ -10,6 +10,7 @@ use App\Models\Vehicle;
 use App\Models\Brand;
 use App\Models\User;
 use Validator,Auth;
+use App\Models\ProductSimilarity;
 
 class HomeController extends Controller
 {
@@ -40,7 +41,27 @@ class HomeController extends Controller
     public function vehicle_details($id=null){
         $result=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('Vid',$id)->first();
         //return $result;
-        return view('user.booking.vehicle_detail',compact('result'));
+       // return view('user.booking.vehicle_detail',compact('result'));
+
+        //recommadation 
+        $products        = Vehicle::leftJoin('brands','Brand','=','brands.id')->select('vehicles.*','brands.*')->get()->toArray();
+        $selectedId      = intval($id);
+        $selectedProduct = $products[0];
+    
+        $selectedProducts = array_filter($products, function ($product) use ($selectedId) { return $product['Vid'] === $selectedId; });
+        if (count($selectedProducts)) {
+            $selectedProduct = $selectedProducts[array_keys($selectedProducts)[0]];
+        }
+    
+        $productSimilarity = new ProductSimilarity($products);
+        $similarityMatrix  = $productSimilarity->calculateSimilarityMatrix();
+        $products          = $productSimilarity->getProductsSortedBySimularity($selectedId, $similarityMatrix);
+    
+    //     return view('welcome', compact('selectedId', 'selectedProduct', 'products'));
+    // }); 
+//dd($products);
+         return view('user.booking.vehicle_detail',compact('result','products'));
+
     }
     public function two()
     {   
@@ -52,8 +73,12 @@ class HomeController extends Controller
     }
     public function four()
     {   
-        $most_booked=Vehicle::join('brands','vehicles.Brand','=','brands.id')->join('ranks','vehicles.Vid','=','ranks.Vehicle_id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->orderBy('ranks.rank','DESC')->limit(10)->get();
-        $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(12);
+        $most_booked=Vehicle::join('brands','vehicles.Brand','=','brands.id')
+                              ->join('ranks','vehicles.Vid','=','ranks.Vehicle_id')
+                              ->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')
+                              ->orderBy('ranks.rank','DESC')->limit(10)->get();
+        $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)
+                     ->select('vehicles.*','brands.*')->paginate(12);
        // $four=Vehicle::leftJoin('brands','Brand','=','brands.id')->where('vehicles.Vtype',4)->select('vehicles.*','brands.*')->paginate(4);
        // return $result;
        return view('four_wheeler',compact('four','most_booked'));
@@ -113,5 +138,21 @@ class HomeController extends Controller
          }
     }
 
+    // Route::get('/', function () {
+    //     return view('welcome');
+    //     $products        = json_decode(file_get_contents(storage_path('data/products-data.json')));
+    //     $selectedId      = intval(app('request')->input('id') ?? '8');
+    //     $selectedProduct = $products[0];
     
+    //     $selectedProducts = array_filter($products, function ($product) use ($selectedId) { return $product->id === $selectedId; });
+    //     if (count($selectedProducts)) {
+    //         $selectedProduct = $selectedProducts[array_keys($selectedProducts)[0]];
+    //     }
+    
+    //     $productSimilarity = new App\ProductSimilarity($products);
+    //     $similarityMatrix  = $productSimilarity->calculateSimilarityMatrix();
+    //     $products          = $productSimilarity->getProductsSortedBySimularity($selectedId, $similarityMatrix);
+    
+    //     return view('welcome', compact('selectedId', 'selectedProduct', 'products'));
+    // }); 
 }

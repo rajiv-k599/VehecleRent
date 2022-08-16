@@ -55,7 +55,7 @@
 }
 .bg-1:hover{
   transform: scale(1.05);
-  box-shadow: 1px 6px 20px 0 rgb(254, 88, 66);
+  box-shadow: 1px 6px 20px 0 rgb(254, 66, 154);
 }
 .img-resize{
   height: 200px;

@@ -38,11 +38,12 @@ class BookingController extends Controller
     }
     public function booked()
     {  
+      
         $booked=DB::table('bookings')->leftJoin('users','bookings.Uid','=','users.id')
                         ->leftJoin('vehicles','bookings.vehicleId','=','vehicles.Vid')
                         ->where('status',1)
                         ->select('bookings.*', 'vehicles.Vname', 'users.name')->get();
-                        
+                 
                         
         //return $booked;
         return view('admin.booking.confirmedBooking',compact('booked'));
@@ -82,8 +83,8 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $checkDate=Booking::where('vehicleId',$request->vid)
-        ->whereBetween('FromDate',[$request->fromdate." 00:00:00",$request->todate." 23:59:59"])
-        ->whereBetween('ToDate',[$request->fromdate." 00:00:00",$request->todate." 23:59:59"])->exists();
+                           ->whereBetween('FromDate',[$request->fromdate." 00:00:00",$request->todate." 23:59:59"])
+                           ->whereBetween('ToDate',[$request->fromdate." 00:00:00",$request->todate." 23:59:59"])->exists();
        if($checkDate){
          return redirect(route('vehicle_details',$request->vid))->with('Error', 'Already booked!');
        }else{
