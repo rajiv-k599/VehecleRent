@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id('Bid')->autoIncrement();
-            $table->string('email')->unique();
+           
             $table->date('FromDate');
             $table->date('ToDate');
             $table->string('message');

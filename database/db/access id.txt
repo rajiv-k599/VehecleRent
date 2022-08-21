@@ -1,0 +1,9 @@
+Admin
+Email : admin@gmail.com
+Pass: admin
+
+--------------------------------
+User
+
+Email: user@gmail.com
+pass: 123456789

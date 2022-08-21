@@ -20,7 +20,7 @@ class BrandController extends Controller
       $validate= $request->validate ([
             'Vtype'=>'required',
             'Bname'=>'required',
-            'Aid'=>'required',
+            
        ]);
        brand::insert($validate);
        echo "Inserted successfully";
